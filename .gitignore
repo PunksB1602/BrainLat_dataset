@@ -1,5 +1,3 @@
-# Ignore the data folder (contains ~20GB of MRI data)
-data/
 
 # Python cache
 __pycache__/
@@ -30,8 +28,6 @@ Thumbs.db
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Ignore all .tsv files recursively
-**/*.tsv
 
 # Ignore EEG and MRI data folders
 Synapse_EEG_Parkinson/EEG_data/
