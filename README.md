@@ -166,38 +166,77 @@ Each subject folder contains up to three subdirectories:
 
 ---
 
-## Dataset Statistics
+## Dataset Statistics (Verified)
 
-### Downloaded Data Summary (PD + CN Only)
+This section summarizes the **final verified dataset** after cross-checking CSV metadata, Synapse availability, and local downloads using automated validation scripts.
 
-| Folder | CSV Expected | Synapse Available | Downloaded | PD | CN |
-|--------|--------------|-------------------|------------|----|----|
-| **AR** | 92 | 35 | 35 | 13 | 22 |
-| **CLB** | 106 | 106 | 106 | 21 | 85 |
-| **COA** | 50 | 50 | 50 | 22 | 28 |
-| **COB** | 45 | 45 | 45 | 0 | 45 |
-| **MXA** | 2 | 2 | 2 | 0 | 2 |
-| **PE** | 7 | 7 | 7 | 0 | 7 |
+---
+
+### MRI Dataset (PD vs CN)
+
+- **CSV expected (PD+CN):** 302 subjects  
+  - PD: 57  
+  - CN: 245  
+
+- **Synapse available (PD+CN):** 245 subjects  
+  - PD: 56  
+  - CN: 189  
+
+- **Downloaded locally:** **245 / 245 (100%)**
+
+| Site | CSV Expected | Synapse Available | Downloaded | PD | CN |
+|-----:|-------------:|------------------:|-----------:|---:|---:|
+| AR   | 92  | 35  | 35  | 13 | 22 |
+| CLB  | 106 | 106 | 106 | 21 | 85 |
+| COA  | 50  | 50  | 50  | 22 | 28 |
+| COB  | 45  | 45  | 45  | 0  | 45 |
+| MXA  | 2   | 2   | 2   | 0  | 2  |
+| PE   | 7   | 7   | 7   | 0  | 7  |
 | **TOTAL** | **302** | **245** | **245** | **56** | **189** |
 
-**Download Status:**  100% Complete (245/245 available subjects downloaded)
+**Status:** All available PD+CN MRI subjects successfully downloaded and verified.
 
-### EEG Downloaded Data Summary (PD + CN/HC)
-> EEG data are available only for Argentina and Chile sites and represent a partially overlapping cohort with the MRI dataset.
+---
 
-| Folder | Synapse Available | Downloaded | PD | CN/HC |
-|--------|-------------------|------------|----|-------|
-| **3_PD/AR** | 7  | 7  | 7  | 0  |
-| **3_PD/CL** | 22 | 22 | 22 | 0  |
-| **5_HC/AR** | 19 | 19 | 0  | 19 |
-| **5_HC/CL** | 27 | 27 | 0  | 27 |
-| **TOTAL**   | **75** | **75** | **29** | **46** |
+### EEG Dataset (PD vs CN / HC)
 
-**EEG Download Status:** 100% Complete (75/75 available subjects downloaded)
+- **Synapse available:** 75 subjects  
+- **Downloaded locally:** **75 / 75 (100%)**
 
-**Note on duplicates (EEG CSVs):**
-- PD EEG CSVs contain **duplicate `id_eeg` entries** (6 duplicates), so the **unique PD subject count is 23** (not 29).
-- Recommended EEG ML cohort (unique PD+CN): **69 subjects** = **23 PD + 46 CN**.
+| Group | Site | Subjects |
+|-----:|:----:|---------:|
+| PD   | AR   | 7  |
+| PD   | CL   | 22 |
+| HC   | AR   | 19 |
+| HC   | CL   | 27 |
+| **TOTAL** |  | **75** |
+
+**Duplicate handling:**
+- PD EEG CSVs contain **6 duplicate `id_eeg` entries**
+- **Unique EEG subjects:** **69**
+  - PD: 23
+  - CN/HC: 46
+
+**Final EEG ML cohort:** **69 subjects (23 PD + 46 CN)**
+
+---
+
+### Storage Footprint
+
+- **MRI (PD+CN):** ~19.8 GB  
+- **EEG (PD+CN/HC):** ~7.94 GB  
+- **Total (MRI + EEG):** ~27.74 GB  
+
+---
+
+### Verification Scripts Used
+
+- `BrainLat_EEG_analysis.py`
+- `verify_download_eeg.py`
+- `BrainLat_MRI_analysis.py`
+- `verify_download_mri.py`
+
+**All integrity checks passed. Dataset is ready for PD vs CN classification.**
 
 ---
 
@@ -208,6 +247,8 @@ Each subject folder contains up to three subdirectories:
 | **PD** | 57 | 69.7 ± 7.8 | 70.2% | 29.8% |
 | **CN** | 247 | 68.0 ± 8.9 | 34.0% | 66.0% |
 
+---
+
 ### Cognitive Assessment Scores
 
 | Group | MoCA (Mean ± SD) | IFS (Mean ± SD) |
@@ -215,12 +256,12 @@ Each subject folder contains up to three subdirectories:
 | **PD** | 23.2 ± 4.0 | 21.7 ± 5.3 |
 | **CN** | 26.1 ± 3.0 | 24.8 ± 3.8 |
 
-**Note:**
+**Notes:**
 - **MoCA:** Montreal Cognitive Assessment (max score: 30)
 - **IFS:** INECO Frontal Screening (max score: 30)
 - Lower scores indicate greater cognitive impairment
 
----
+
 
 ## Data Files
 
@@ -430,7 +471,13 @@ This dataset was made possible through the collaborative efforts of:
 
 ---
 
-## Quick Reference: Site Codes
+## Quick Reference: Site Codes and Cohorts
+
+This section provides a concise overview of the **final verified cohorts** used in this repository, separated by modality.
+
+---
+
+### MRI Cohort (PD + CN, Synapse-available)
 
 | Code | Location | PD | CN | Total |
 |------|----------|----|----|-------|
@@ -441,5 +488,48 @@ This dataset was made possible through the collaborative efforts of:
 | **MXA** | Mexico City, Mexico | 0 | 2 | 2 |
 | **PE** | Lima, Peru | 0 | 7 | 7 |
 
-**Grand Total:** 56 PD + 189 CN = **245 subjects**
+**MRI Total:** **56 PD + 189 CN = 245 subjects**
 
+> Note: Counts correspond to the MRI PD+CN subset available on Synapse and fully downloaded and verified locally.
+
+---
+
+### EEG Cohort (PD + CN / HC, Synapse-available)
+
+| Group | Site | Subjects |
+|------:|:----:|---------:|
+| PD | AR | 7 |
+| PD | CL | 22 |
+| CN/HC | AR | 19 |
+| CN/HC | CL | 27 |
+| **TOTAL (raw)** |  | **75** |
+
+**Duplicate handling:**
+- PD EEG CSVs contain **6 duplicate `id_eeg` entries**
+- **Unique EEG subjects:** **69**
+  - PD: 23
+  - CN/HC: 46
+
+**Final EEG ML Cohort:** **69 subjects (23 PD + 46 CN)**
+
+> Note: EEG data are available only for Argentina and Chile and represent a partially overlapping cohort with the MRI dataset.
+
+---
+
+### Combined Overview
+
+| Modality | Subjects | Notes |
+|--------|----------|------|
+| **MRI (PD+CN)** | 245 | 56 PD + 189 CN, 6 sites |
+| **EEG (PD+CN/HC)** | 69 | 23 PD + 46 CN, AR & CL only |
+| **MRI + EEG overlap** | Partial | Explicit EEG–MRI mapping required |
+
+**Storage footprint:**
+- MRI: ~19.8 GB  
+- EEG: ~7.94 GB  
+- **Total:** ~27.74 GB
+
+
+
+
+This repository reflects the final validated PD vs CN cohorts derived from the BrainLat dataset and is intended for reproducible neuroimaging and machine learning research.
