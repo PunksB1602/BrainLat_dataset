@@ -1,0 +1,30 @@
+path,id_EEG,id_MRI,MRI_path,diagnosis,T1,Rest,DWI,MF,eeg
+3_PD/AR,sub-40001,sub-AR00401,Files\MRI data\AR,PD,1,1,1,3,1
+3_PD/AR,sub-40006,sub-AR00406,Files\MRI data\AR,PD,1,1,1,3,1
+3_PD/AR,sub-40008,sub-AR00408,Files\MRI data\AR,PD,0,0,0,3,1
+3_PD/AR,sub-40010,sub-AR00410,Files\MRI data\AR,PD,0,0,0,3,1
+3_PD/AR,sub-40011,sub-AR00411,Files\MRI data\AR,PD,1,1,1,3,1
+3_PD/AR,sub-40012,sub-AR00412,Files\MRI data\AR,PD,1,1,1,3,1
+3_PD/AR,sub-40013,sub-AR00413,Files\MRI data\AR,PD,1,1,1,3,1
+3_PD/CL,sub-40001,sub-CLB00401,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL,sub-40004,sub-CLB00404,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL,sub-40009,sub-CLB00409,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL,sub-40011,sub-CLB00411,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL,sub-40015,sub-CLB00415,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40005  ,sub-CLB00405,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40006  ,sub-CLB00406,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40007  ,,,PD,0,0,0,0,1
+3_PD/CL, sub-40008  ,sub-CLB00408,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40010,sub-CLB00410,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40012 ,sub-CLB00412,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40016,sub-CLB00416,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40017,sub-CLB00417,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40018,sub-CLB00418,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40019,sub-CLB00419,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40020,sub-CLB00420,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40021,sub-CLB00421,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40022,sub-CLB00422,Files\MRI data\CLB,PD,1,1,1,3,1
+3_PD/CL, sub-40023,,,PD,0,0,0,0,1
+3_PD/CL, sub-40024,,,PD,0,0,0,0,1
+3_PD/CL, sub-40025,,,PD,0,0,0,0,1
+3_PD/CL, sub-40026,,,PD,0,0,0,0,1

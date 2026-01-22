@@ -1,0 +1,42 @@
+Term,Definition,Code,Table
+id,identification number ,,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+diagnosis,,CN AD AD FTD PD MS,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+CN,healthy participants,,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+AD,Alzheimer's disease,,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+FTD,behavioral variant frontotemporal demetia,,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+PD,Parkinson's disease,,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+MS,Multiple sclerosis,,"BrainLat_Demographic, BrainLat_Cognition, BrainLat_records"
+sex,,0:female 1:male,BrainLat_Demographic
+Age,,,BrainLat_Demographic
+years_education,years ofeducation,,BrainLat_Demographic
+laterality,,0:left 1:right,BrainLat_Demographic
+moca,Montreal cognitive assessment (MoCa),, BrainLat_Cognition
+moca_total,total score of MoCa,0-30, BrainLat_Cognition
+moca_visuospatial,MoCa  visuospatial assestment,0-5, BrainLat_Cognition
+moca_recog,MoCa  recognition assestment,0-3, BrainLat_Cognition
+moca_attention,MoCa  attentional assestment,0-6, BrainLat_Cognition
+moca_language,MoCa  languaje assestment,0-3, BrainLat_Cognition
+moca_abstraction,MoCa  abstraction assestment,0-2, BrainLat_Cognition
+moca_memory,MoCa  memory assestment,0-5, BrainLat_Cognition
+moca_orientation,MoCa orientation assestment,0-6, BrainLat_Cognition
+INECO,Institute of Cognitive Neurology,, BrainLat_Cognition
+ifs,INECO Frontal Screening,,
+ifs_total_score,total score of ifs,0-30, BrainLat_Cognition
+ifs_motor_series,Motor Programming ifs subset,0-3, BrainLat_Cognition
+ifs_conflicting_instructions,Conflicting Instructions ifs subset,0-3, BrainLat_Cognition
+ifs_motor_inhibition,Go–No Go ifs subset,0-3, BrainLat_Cognition
+ifs_digits,Backward Digit Span ifs subset,0-6, BrainLat_Cognition
+ifs_months,Verbal Working Memory ifs subset,0-2, BrainLat_Cognition
+ifs_visual_wm,Spatial Working Memory ifs subset,0-4, BrainLat_Cognition
+ifs_proverb,Abstraction Capacity ifs subset,0-3, BrainLat_Cognition
+ifs_verbal_inhibition,Verbal Inhibitory Control ifs subset,0-6, BrainLat_Cognition
+mini_sea,Mini Social Cognition and Emotional Assessment,0-75, BrainLat_Cognition
+mini_sea_fer,"reduced facial emotion recognition test (FERT), a  mini_sea component",0-35, BrainLat_Cognition
+mini_sea_tom,"shortened version of the Faux-Pas test (FPT), a  mini_sea component",0-40, BrainLat_Cognition
+emotion recog,emotion recognition test,0-35, BrainLat_Cognition
+MRI,magnetic resonance image,0:not available 1:available,BrainLat_records
+T1,T1 weighted MRI,0:not available 1:available,BrainLat_records
+Rest,resting state functional MRI,0:not available 1:available,BrainLat_records
+DWI,difussion weighted MRI,0:not available 1:available,BrainLat_records
+MF,magnetic field strenght ,0:not available 1:available,BrainLat_records
+eeg,electroencephalogram,0:not available 1:available,BrainLat_records
