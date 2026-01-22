@@ -20,6 +20,21 @@ This repository focuses on a verified PD vs CN subset of the BrainLat dataset an
 
 ---
 
+## Data Availability Statement
+
+This repository does **not** host raw BrainLat MRI or EEG data.
+
+All neuroimaging data are available via the Synapse platform
+(Project ID: syn51549340) subject to BrainLat data access policies.
+
+This repository provides:
+- Documentation
+- Verification statistics
+- Analysis scripts
+- Reproducible folder structure
+
+---
+
 ## Dataset Composition
 
 ### Participants by Diagnosis
@@ -39,7 +54,7 @@ This repository contains data for **245 subjects**:
 - **Parkinson's Disease (PD):** 56 subjects
 - **Cognitively Normal (CN):** 189 subjects
 
-Subjects with AD, bvFTD, and MS were excluded to focus on PD classification.
+Subjects with AD, bvFTD, and MS were excluded to focus on PD vs CN classification in the Synapse-available subset.
 
 ---
 
@@ -89,8 +104,7 @@ In the official BrainLat Synapse release, subject identifiers follow consortium-
 
 For practical organization, **this repository uses a local folder-naming convention**:
 
-`sub-[REPO_SITE_CODE][NUMBER]`
-(e.g., `sub-AR00401`, `sub-CLB00044`)
+`sub-[REPO_SITE_CODE][NUMBER]` (e.g., `sub-AR00401`, `sub-CLB00044`)
 
 **Examples (local repository folders):**
 - `sub-AR00401` – Argentina, subject 401 (PD)
@@ -110,8 +124,8 @@ EEG data follow **a separate identifier system** from MRI and are defined in the
 
 Typical EEG identifiers include:
 
-- **PD EEG IDs:** `sub-40001`, `sub-40004`, …
-- **CN/HC EEG IDs:** `sub-10001`, `sub-100010`, …
+- **PD EEG IDs (example pattern):** `sub-4xxxx` (e.g., `sub-40001`, `sub-40004`, …)
+- **CN/HC EEG IDs (example pattern):** `sub-1xxxx` (e.g., `sub-10001`, `sub-10002`, …)
 
 > **Critical note:**  
 > EEG and MRI identifiers may represent **partially overlapping cohorts**.  
@@ -122,11 +136,12 @@ Typical EEG identifiers include:
 ## Data Structure
 
 ### Local (Derived) Data Organization Used in This Repository
-```text
-This repository reorganizes the downloaded PD vs CN subset for practical analysis.
+This repository reorganizes the downloaded PD vs CN subset for practical analysis.  
 The official BrainLat release follows BIDS / EEG-BIDS structure on Synapse.
 
+```text
 data/
+
 ├── AR/ # Argentina (Buenos Aires)
 │ ├── sub-AR00401/
 │ │ ├── anat/ # T1-weighted anatomical MRI
@@ -246,7 +261,8 @@ This section summarizes the **final verified dataset** after cross-checking CSV 
 
 **Final EEG ML cohort:** **69 subjects (23 PD + 46 CN)**
 
-> Note: Counts correspond to the PD+CN MRI subset downloaded and verified in this repository, not the full BrainLat cohort.
+> Note: EEG counts correspond to the Synapse-available EEG subset downloaded and verified in this repository, not the full BrainLat cohort.
+
 
 
 ### Storage Footprint
@@ -268,8 +284,9 @@ This section summarizes the **final verified dataset** after cross-checking CSV 
 
 ---
 
-### Demographics by Diagnosis
-> Demographic statistics are reported from the full CSV metadata and may include subjects not available in the PD+CN Synapse subset.
+### Demographics by Diagnosis (CSV-level; not limited to Synapse-available subset)
+> The counts below come from the full CSV metadata after filtering by diagnosis (PD vs CN) and may include participants that are **not available** in the Synapse PD+CN download subset used in this repository (56 PD + 189 CN).
+> Therefore, these N values (e.g., PD=57, CN=247) should not be interpreted as the downloaded cohort size.
 
 
 | Group | N | Age (Mean ± SD) | Male % | Female % |
