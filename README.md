@@ -15,6 +15,9 @@ The Latin American Brain Health Institute (BrainLat) dataset comprises multimoda
 - **Modalities:** T1w anatomical MRI, resting-state fMRI, DWI, high-density EEG
 - **Clinical Groups:** AD, bvFTD, MS, PD, and healthy controls
 
+
+This repository focuses on a verified PD vs CN subset of the BrainLat dataset and does not reproduce the full multimodal cohort described in the original publication.
+
 ---
 
 ## Dataset Composition
@@ -42,12 +45,13 @@ Subjects with AD, bvFTD, and MS were excluded to focus on PD classification.
 
 ## Recruitment Centers and Site Codes
 
-The dataset was collected through the Multi-Partner Consortium to Expand Dementia Research in Latin America (ReDLat). Each recruitment site has a unique identifier used in subject IDs.
+The dataset was collected through the Multi-Partner Consortium to Expand Dementia Research in Latin America (ReDLat). Each recruitment site has a unique identifier used in subject IDs. This repository additionally defines **local site codes (AR, CLB, COA, COB, MXA, PE)** for folder organization and bookkeeping. These local codes do **not** necessarily correspond to official BrainLat BIDS subject identifiers used in the Synapse release.
+
 
 ### Site Code Mapping
 
-| Site Code | Country | Institution | Full Name |
-|-----------|---------|-------------|-----------|
+| Repo Site Code | Country | Institution (BrainLat / Synapse) | Full Name |
+|----------------|---------|----------------------------------|-----------|
 | **AR** | 🇦🇷 Argentina | CNC-UdeSA | Centro de Neurociencia Cognitiva, Universidad de San Andrés, Buenos Aires |
 | **CLB** | 🇨🇱 Chile | GERO | Neurology Department, Geroscience Center for Brain Health and Metabolism, Santiago |
 | **CLA** | 🇨🇱 Chile | CICA | Centro de Investigación Clínica Avanzada (CICA), Hospital Clínico Universidad de Chile |
@@ -56,6 +60,8 @@ The dataset was collected through the Multi-Partner Consortium to Expand Dementi
 | **MXA** | 🇲🇽 Mexico | INCMNM | Geriatrics Dept, Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán, Mexico City |
 | **MXB** | 🇲🇽 Mexico | INNN | Instituto Nacional de Neurología y Neurocirugía, Ciudad de México |
 | **PE** | 🇵🇪 Peru | UCIDP-IPN | Unit Cognitive Impairment and Dementia Prevention, Peruvian Institute of Neurosciences, Lima |
+
+**Note:** “Repo Site Code” is a local naming convention used only within this repository and does not replace official BrainLat site or subject identifiers.
 
 ### Country Codes (ISO Standard)
 
@@ -75,33 +81,51 @@ The dataset was collected through the Multi-Partner Consortium to Expand Dementi
 
 ---
 
-## Subject ID Format
+## Subject IDs (Official vs Repository-Specific)
 
-Subject IDs follow the format: `sub-[SITE][NUMBER]`
+### MRI Subject Identifiers
 
-**Examples:**
-- `sub-AR00401` - Argentina, subject 401 (PD patient)
-- `sub-CLB00044` - Chile site B (GERO), subject 44 (CN)
-- `sub-COA00101` - Colombia site A (UV Cali), subject 101 (PD patient)
-- `sub-COB069` - Colombia site B (PUJB Bogotá), subject 69 (CN)
-- `sub-MXA00014` - Mexico site A, subject 14 (CN)
-- `sub-PE00101` - Peru, subject 101 (CN)
+In the official BrainLat Synapse release, subject identifiers follow consortium-defined BIDS conventions and may vary by site and modality.
 
-### EEG Subject IDs (Resting-State EEG)
+For practical organization, **this repository uses a local folder-naming convention**:
 
-EEG subject IDs follow a different format from MRI IDs and are typically:
+`sub-[REPO_SITE_CODE][NUMBER]`
+(e.g., `sub-AR00401`, `sub-CLB00044`)
 
-- **PD EEG IDs:** `sub-40001`, `sub-40004`, ...
-- **HC/CN EEG IDs:** `sub-10001`, `sub-100010`, ...
+**Examples (local repository folders):**
+- `sub-AR00401` – Argentina, subject 401 (PD)
+- `sub-CLB00044` – Chile (GERO), subject 44 (CN)
+- `sub-COA00101` – Colombia (UV Cali), subject 101 (PD)
+- `sub-COB069` – Colombia (PUJB Bogotá), subject 69 (CN)
+- `sub-MXA00014` – Mexico (INCMNM), subject 14 (CN)
+- `sub-PE00101` – Peru, subject 101 (CN)
 
-> Do not assume EEG IDs match MRI IDs unless you have an explicit mapping (e.g., `EEG_ID ↔ MRI_ID`).
+> **Important:** These folder names are **repository-specific identifiers** and should **not be assumed to exactly match official BrainLat BIDS subject IDs** unless explicitly mapped via metadata.
+
+---
+
+### EEG Subject Identifiers (Resting-State EEG)
+
+EEG data follow **a separate identifier system** from MRI and are defined in the EEG CSV metadata.
+
+Typical EEG identifiers include:
+
+- **PD EEG IDs:** `sub-40001`, `sub-40004`, …
+- **CN/HC EEG IDs:** `sub-10001`, `sub-100010`, …
+
+> **Critical note:**  
+> EEG and MRI identifiers may represent **partially overlapping cohorts**.  
+> Cross-modal (EEG–MRI) analyses require **explicit subject linkage using CSV metadata** (e.g., demographic or record tables). No implicit one-to-one ID correspondence should be assumed.
 
 ---
 
 ## Data Structure
 
-### Downloaded Data Organization
+### Local (Derived) Data Organization Used in This Repository
 ```text
+This repository reorganizes the downloaded PD vs CN subset for practical analysis.
+The official BrainLat release follows BIDS / EEG-BIDS structure on Synapse.
+
 data/
 ├── AR/ # Argentina (Buenos Aires)
 │ ├── sub-AR00401/
@@ -160,7 +184,8 @@ Each subject folder contains up to three subdirectories:
    - Used for: White matter tractography, microstructural analysis
 
 3. **func/** - Functional MRI
-   - Resting-state BOLD fMRI
+   - Resting-state BOLD fMRI  
+     Acquisition parameters vary by site, as described in the BrainLat Scientific Data paper.
    - Format: NIfTI (.nii.gz)
    - Used for: Functional connectivity, network analysis
 
@@ -169,6 +194,8 @@ Each subject folder contains up to three subdirectories:
 ## Dataset Statistics (Verified)
 
 This section summarizes the **final verified dataset** after cross-checking CSV metadata, Synapse availability, and local downloads using automated validation scripts.
+
+**Disclaimer:** Counts reported below reflect the **PD vs CN subset available on Synapse at download time** and verified locally. These numbers may differ from full cohort counts reported in the BrainLat paper due to access restrictions and subset selection.
 
 ---
 
@@ -219,7 +246,8 @@ This section summarizes the **final verified dataset** after cross-checking CSV 
 
 **Final EEG ML cohort:** **69 subjects (23 PD + 46 CN)**
 
----
+> Note: Counts correspond to the PD+CN MRI subset downloaded and verified in this repository, not the full BrainLat cohort.
+
 
 ### Storage Footprint
 
@@ -241,6 +269,8 @@ This section summarizes the **final verified dataset** after cross-checking CSV 
 ---
 
 ### Demographics by Diagnosis
+> Demographic statistics are reported from the full CSV metadata and may include subjects not available in the PD+CN Synapse subset.
+
 
 | Group | N | Age (Mean ± SD) | Male % | Female % |
 |-------|---|-----------------|---------|----------|
@@ -358,7 +388,7 @@ BrainLat MRI Dataset (Synapse)
 
 Please cite the following paper when using this dataset:
 
-> Prado P, Medel V, Gonzalez-Gomez R, Sainz-Ballesteros A, Vidal V, Santamaría-García H, Moguilner S, Mejia J, Slachevsky A, Behrens MI, Aguillon D, Lopera F, Parra MA, Matallana D, Maito MA, Garcia AM, Custodio N, Funes AA, Piña-Escudero S, Birba A, Fittipaldi S, Legaz A, Ibañez A (2023). **The BrainLat project, a multimodal neuroimaging dataset of neurodegeneration from underrepresented backgrounds.** *Scientific Data* (accepted).
+> Prado P, Medel V, Gonzalez-Gomez R, Sainz-Ballesteros A, Vidal V, Santamaría-García H, Moguilner S, Mejia J, Slachevsky A, Behrens MI, Aguillon D, Lopera F, Parra MA, Matallana D, Maito MA, Garcia AM, Custodio N, Funes AA, Piña-Escudero S, Birba A, Fittipaldi S, Legaz A, Ibañez A (2023). **The BrainLat project, a multimodal neuroimaging dataset of neurodegeneration from underrepresented backgrounds.** *Scientific Data* (2023).
 
 ### Purpose
 
@@ -374,8 +404,10 @@ This dataset was created to:
 
 ### Data Format
 - **Image Format:** NIfTI (.nii.gz)
-- **BIDS Compliance:** Partially BIDS-compliant structure
-- **Coordinate System:** MNI space (after preprocessing)
+- **BIDS Compliance:** The official Synapse release follows BIDS/EEG-BIDS conventions; this repository stores a derived subset reorganized for analysis.
+- **Coordinate System:** Native acquisition space. No spatial normalization (e.g., MNI) is applied in the distributed MRI data. Users may perform preprocessing and normalization according to their own analysis pipelines.
+
+
 
 ### Total Dataset Size
 - **MRI (PD+CN only):** ~19.8 GB  
@@ -476,6 +508,8 @@ This dataset was made possible through the collaborative efforts of:
 This section provides a concise overview of the **final verified cohorts** used in this repository, separated by modality.
 
 ---
+
+> Note: Not all listed sites are present in the PD vs CN subset used in this repository.
 
 ### MRI Cohort (PD + CN, Synapse-available)
 
