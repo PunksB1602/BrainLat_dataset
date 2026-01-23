@@ -1,0 +1,104 @@
+from pathlib import Path
+import pandas as pd
+
+# =========================
+# CONFIG (no arguments)
+# =========================
+MRI_ROOT = Path(r"D:\Datasets\Synapse\Synapse_MRI_Parkinson\MRI_ANAT_CLASSIFIED").resolve()
+EEG_ROOT = Path(r"D:\Datasets\Synapse\Synapse_EEG_Parkinson\EEG_CLASSIFIED").resolve()
+
+MRI_EXT = (".nii", ".nii.gz")
+EEG_EXT = (".set", ".fdt", ".edf", ".bdf")
+
+def has_file_with_ext(root, exts):
+    for p in root.rglob("*"):
+        if p.is_file() and p.name.lower().endswith(exts):
+            return True
+    return False
+
+def verify_mri():
+    rows = []
+    for label in ["PD", "CN"]:
+        label_dir = MRI_ROOT / label
+        if not label_dir.exists():
+            continue
+
+        for subj_dir in label_dir.iterdir():
+            if not subj_dir.is_dir():
+                continue
+
+            anat_dir = subj_dir / "anat"
+            ok = anat_dir.exists() and has_file_with_ext(anat_dir, MRI_EXT)
+
+            rows.append({
+                "label": label,
+                "subject": subj_dir.name,
+                "has_anat_dir": anat_dir.exists(),
+                "has_nifti": has_file_with_ext(anat_dir, MRI_EXT) if anat_dir.exists() else False,
+                "status": "OK" if ok else "MISSING"
+            })
+
+    df = pd.DataFrame(rows)
+    df.to_csv("verify_mri_anat.csv", index=False)
+
+    print("=" * 80)
+    print("MRI VERIFICATION")
+    print("=" * 80)
+    print("Total subjects:", len(df))
+    print("Valid subjects:", (df["status"] == "OK").sum())
+    print("Missing / invalid:", (df["status"] != "OK").sum())
+    print("Saved: verify_mri_anat.csv")
+
+def verify_eeg():
+    rows = []
+    for label in ["PD", "CN"]:
+        label_dir = EEG_ROOT / label
+        if not label_dir.exists():
+            continue
+
+        for site_dir in label_dir.iterdir():
+            if not site_dir.is_dir():
+                continue
+
+            for subj_dir in site_dir.iterdir():
+                if not subj_dir.is_dir():
+                    continue
+
+                ok = has_file_with_ext(subj_dir, EEG_EXT)
+
+                rows.append({
+                    "label": label,
+                    "site": site_dir.name,
+                    "subject": subj_dir.name,
+                    "has_eeg_file": ok,
+                    "status": "OK" if ok else "MISSING"
+                })
+
+    df = pd.DataFrame(rows)
+    df.to_csv("verify_eeg.csv", index=False)
+
+    print("=" * 80)
+    print("EEG VERIFICATION")
+    print("=" * 80)
+    print("Total subjects:", len(df))
+    print("Valid subjects:", (df["status"] == "OK").sum())
+    print("Missing / invalid:", (df["status"] != "OK").sum())
+    print("Saved: verify_eeg.csv")
+
+def main():
+    if not MRI_ROOT.exists():
+        print("ERROR: MRI_ANAT_CLASSIFIED not found:", MRI_ROOT)
+        return
+    if not EEG_ROOT.exists():
+        print("ERROR: EEG_CLASSIFIED not found:", EEG_ROOT)
+        return
+
+    verify_mri()
+    verify_eeg()
+
+    print("=" * 80)
+    print("VERIFICATION COMPLETE")
+    print("=" * 80)
+
+if __name__ == "__main__":
+    main()

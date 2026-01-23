@@ -520,5 +520,3 @@ print("""
 """)
 
 print_section("ANALYSIS COMPLETE", 100)
-print("Script: EEG_6CSV_Analysis_NoSaving.py")
-print("Status: All checks executed\n")

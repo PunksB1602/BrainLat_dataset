@@ -30,5 +30,11 @@ Thumbs.db
 
 
 # Ignore EEG and MRI data folders
-Synapse_EEG_Parkinson/EEG_data/
-Synapse_MRI_Parkinson/MRI_data/
+*.fdt
+*.set
+*.bval
+*.bvec
+*.gz
+*.json
+*.nii
+*.txt
