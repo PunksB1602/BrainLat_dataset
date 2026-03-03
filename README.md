@@ -127,6 +127,8 @@ Typical EEG identifiers include:
 - **PD EEG IDs (example pattern):** `sub-4xxxx` (e.g., `sub-40001`, `sub-40004`, …)
 - **CN/HC EEG IDs (example pattern):** `sub-1xxxx` (e.g., `sub-10001`, `sub-10002`, …)
 
+>Important: In the EEG dataset, folder names AR and CL denote recording conditions (e.g., active rest and eyes-closed states) and do not correspond to country or site codes used in the MRI data organization.
+
 > **Critical note:**  
 > EEG and MRI identifiers may represent **partially overlapping cohorts**.  
 > Cross-modal (EEG–MRI) analyses require **explicit subject linkage using CSV metadata** (e.g., demographic or record tables). No implicit one-to-one ID correspondence should be assumed.
